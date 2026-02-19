@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-background-start: var(--bg-start);
+  --color-background-end: var(--bg-end);
+  --color-surface: var(--surface);
+  --color-surface-glass: var(--surface-glass);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+}
+
+:root {
+  /* Light Theme (Premium Gradients) */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #ecfdf5;
+  --bg-start: #f3e8ff;
+  /* Soft Purple */
+  --bg-end: #d1fae5;
+  /* Soft Emerald */
+  --surface: #ffffff;
+  --surface-glass: rgba(255, 255, 255, 0.6);
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+}
+
+.dark {
+  /* Dark Theme (Deep Space / Cyberpunk hint) */
+  --primary: #6366f1;
+  /* Lighter indigo for dark mode */
+  --primary-dark: #818cf8;
+  --secondary: #1e293b;
+  --bg-start: #0f172a;
+  /* Slate 900 */
+  --bg-end: #1e1b4b;
+  /* Indigo 950 */
+  --surface: #1e293b;
+  --surface-glass: rgba(30, 41, 59, 0.7);
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+}
+
+@layer base {
+  body {
+    @apply bg-linear-to-br from-background-start via-background-start to-background-end min-h-screen text-text-main font-sans antialiased transition-colors duration-500;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-surface-glass backdrop-blur-xl border border-white/10 dark:border-white/5 shadow-2xl rounded-2xl;
+  }
+
+  .glass-card {
+    @apply bg-surface/50 dark:bg-surface/40 backdrop-blur-md border border-white/20 dark:border-white/5 shadow-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:bg-surface/70;
+  }
+
+  .glass-input {
+    @apply bg-surface/50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2 focus:outline-hidden focus:ring-2 focus:ring-primary/50 text-text-main placeholder-text-muted transition-all;
+  }
+
+  .glass-button {
+    @apply bg-primary text-white font-medium py-2 px-6 rounded-lg shadow-lg hover:bg-primary-dark transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-linear-to-r from-primary to-purple-500;
+  }
+}
